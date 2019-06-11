@@ -31,3 +31,28 @@
     transform: rotate(360deg);
   }
 }
+
+.toDo {
+  padding: 0.5em 0;
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #a5b0b8;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 0.5em 0;
+  margin-left: 1em;
+}
+
+.dragStart {
+  background: whitesmoke;
+}
+
+.dragEnd {
+  background: palegoldenrod;
+  width: 300px;
+  height: 100px;
+}

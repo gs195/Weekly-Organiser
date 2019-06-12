@@ -1,22 +1,24 @@
 import React from "react";
 import "../styles/App.css";
 import generateID from "./id-generator.js";
-import {Item, Input, Button} from "./functions-group-a";
+import { Item, Input, Button } from "./functions-group-a";
+// import selectTaskList from "./task-list-selector";
 
 class ToDoList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      lastUpdated: "",
       value: "",
-      tasks: [
-        { id: 1, text: "buy milk", isDone: false },
-        { id: 2, text: "eat dinner", isDone: false },
-        { id: 3, text: "nail javascript", isDone: false },
-        { id: 4, text: "give feedback", isDone: false },
-        { id: 5, text: "find nemo", isDone: false }
+      tasksMon: [
+        { id: 1, text: "buy milk", isDone: false, day: "Mon" },
+        { id: 2, text: "eat dinner", isDone: false, day: "Mon" },
+        { id: 3, text: "nail javascript", isDone: false, day: "Mon" },
+        { id: 4, text: "give feedback", isDone: false, day: "Mon" },
+        { id: 5, text: "find nemo", isDone: false, day: "Mon" }
       ],
-      tasksTue: [{ id: 6, text: "get a lyf", isDone: false }],
+      tasksTue: [{ id: 6, text: "find my keys", isDone: false, day: "Tue" }],
       tasksWed: [],
       tasksThur: [],
       tasksFri: [],
@@ -28,11 +30,11 @@ class ToDoList extends React.Component {
   }
 
   tasksPending = () => {
-    const completedTasks = this.state.tasks.filter(t => {
+    const completedTasks = this.state.tasksMon.filter(t => {
       return t.isDone;
     });
 
-    return this.state.tasks.length - completedTasks.length;
+    return this.state.tasksMon.length - completedTasks.length;
   };
 
   handleStrikethrough(event) {
@@ -41,7 +43,7 @@ class ToDoList extends React.Component {
 
     this.setState(prevState => ({
       //synthetic event gets nullified in setState()
-      tasks: prevState.tasks.map(obj =>
+      tasksMon: prevState.tasksMon.map(obj =>
         obj.id === targetId
           ? Object.assign(
               obj,
@@ -57,17 +59,21 @@ class ToDoList extends React.Component {
   };
 
   taskListUpdate = () => {
-    // an onject literal is being directly appended to the tasks list
+    // an onject literal is being directly appended to the tasksMon list
     //in this.state because setState is being called immeiatedly after.
     //Otherwise, the components would not be re-rendered and setState
     //would need to be called in appending the object literal, which would
     //be done by setting a new modified list to this.state.tasts.
-    this.state.tasks.push({
+    this.state.tasksMon.push({
       id: generateID(),
       text: this.state.value,
       isDone: false
     });
     this.setState({ value: "" });
+  };
+
+  getKeyByValue = (object, value) => {
+    return Object.keys(object).find(key => object[key] === value);
   };
 
   handleClick() {
@@ -87,57 +93,127 @@ class ToDoList extends React.Component {
     }
   }
 
+  selectTaskList(listid) {
+    console.log("input tasklist selector day is: ", listid);
+    switch (listid) {
+      case "Mon":
+        console.log("returning this.state.tasksMon");
+        return this.state.tasksMon;
+      case "Tue":
+        console.log("returning this.state.tasksTue");
+        return this.state.tasksTue;
+      default:
+        throw new Error(
+          "input parameter to selectTaskList function is not one of the days"
+        );
+    }
+  }
+
   dragOverHandler = event => {
     event.preventDefault();
   };
 
-  onDragStartHandler = event => {
-    this.itemBeingDragged = this.state.tasks.filter(t => {
-      return t.id === Number(event.target.id);
+  onDragStartHandler = (event, id, itemDay) => {
+    console.log("id is ", id);
+    // for (let key in this.state) {
+    //   console.log("key is", key);
+    //   for (let i = 0; i < this.state[key].length; i++) {
+    //     console.log("this.state[key][i] and i are", this.state[key][i], i);
+    //     if (this.state[key][i] === event.target.day) {
+    //       var itemDay = this.state[key][i].day;
+    //       break;
+    //     }
+    //   }
+    // }
+    console.log("itemDay is ", itemDay);
+    this.itemBeingDragged = this.selectTaskList(itemDay).filter(t => {
+      return t.id === Number(id);
     });
     console.log("object being dragged is ", this.itemBeingDragged);
     event.dataTransfer.setData("text/plain", event.target.key);
   };
 
-  onDropHandler = () => {
-    // event.preventDefault();
+  onDropHandler = (event, imposition, itemDay, id) => {
+    //imposition is day of new list, itemDay is day of old list
+    //identify the taskList depending on source item's day attribute
+    let newList = this.selectTaskList(imposition);
+    console.log("newList is ", newList);
 
-    let newList = this.state.tasksTue;
-    newList.push(this.itemBeingDragged[0]);
+    //replace the object's day attribute with the hard-coded one in Item TaskList
+    let draggedObject = this.itemBeingDragged[0];
+    draggedObject.day = imposition;
+    console.log("draggedObject is ", draggedObject);
+
+    //append dragged item to target taskList
+    newList.push(draggedObject);
     console.log("The item dropped is -> ", newList);
-    this.setState({ tasksTue: newList });
-    console.log("new tasksTue = ", this.state.tasksTue);
+
+    //delete dragged item from source taskLlist
+    let sourceList = this.selectTaskList(itemDay).map(t => {
+      return t.id !== Number(id);
+    });
+
+    //update state
+    const myKeyTarget = this.getKeyByValue(
+      this.state,
+      this.selectTaskList(imposition)
+    );
+    // console.log("myKeyTarget is ", myKeyTarget);
+    const myKeySource = this.getKeyByValue(
+      this.state,
+      this.selectTaskList(itemDay)
+    );
+
+    this.state.myKeyTarget = newList;
+    this.state.myKeySource = sourceList;
+    let timeNow = Date.now();
+    this.setState({ lastUpdated: timeNow });
+    // console.log("myKeySource is ", myKeySource);
+    // this.setState({ myKeyTarget: newList });
+    // this.setState({ myKeySource: sourceList });
   };
 
   render() {
-    const TaskList = this.state.tasks.map(task => {
+    const TaskList = this.state.tasksMon.map(task => {
+      // const dayVar = 1;
       return (
         <Item
+          // day={dayVar}
+          day={task.day}
           id={task.id}
-          key={"Mon" + generateID()}
+          key={generateID()}
           description={task.text}
           onClick={this.handleStrikethrough}
           className={task.isDone ? "done" : "toDo"}
           draggable="true"
-          onDragStart={this.onDragStartHandler}
+          onDragStart={event => {
+            console.log("this is being called");
+            this.onDragStartHandler(event, task.id, task.day);
+          }}
           onDragOver={this.dragOverHandler}
-          onDrop={this.onDropHandler}
+          onDrop={event => this.onDropHandler(event, "Mon", task.day, task.id)}
         />
       );
     });
 
     const TaskList2 = this.state.tasksTue.map(task => {
+      // const dayVar = 2;
       return (
         <Item
+          // day={dayVar}
+          day={task.day}
           id={task.id}
-          key={"Tue" + generateID()}
+          key={generateID()}
           description={task.text}
           onClick={this.handleStrikethrough}
           className={task.isDone ? "done" : "toDo"}
           draggable="true"
-          onDragStart={this.onDragStartHandler}
+          onDragStart={event => {
+            console.log("tue is being called");
+            this.onDragStartHandler(event, task.id, task.day);
+          }}
           onDragOver={this.dragOverHandler}
-          onDrop={this.onDropHandler}
+          onDrop={event => this.onDropHandler(event, "Tue", task.day, task.id)}
         />
       );
     });

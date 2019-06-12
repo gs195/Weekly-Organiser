@@ -5,6 +5,7 @@ function Item({
   onClick,
   className,
   id,
+  day,
   draggable,
   onDragStart,
   onDragOver,
@@ -19,6 +20,7 @@ function Item({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDrop={onDrop}
+      day={day}
     >
       {description}
     </li>

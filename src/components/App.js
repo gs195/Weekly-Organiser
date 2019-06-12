@@ -130,28 +130,32 @@ class ToDoList extends React.Component {
       return t.id === Number(id);
     });
     console.log("object being dragged is ", this.itemBeingDragged);
-    event.dataTransfer.setData("text/plain", event.target.key);
+    // event.dataTransfer.setData("text/plain", event.target.key);
   };
 
   onDropHandler = (event, imposition, itemDay, id) => {
     //imposition is day of new list, itemDay is day of old list
+
     //identify the taskList depending on source item's day attribute
-    let newList = this.selectTaskList(imposition);
-    console.log("newList is ", newList);
+    let newList = this.selectTaskList(itemDay);
+    console.log("original target list is(found to be updated to reduced)", newList);
 
     //replace the object's day attribute with the hard-coded one in Item TaskList
     let draggedObject = this.itemBeingDragged[0];
+    console.log("object that is being dragged is ", draggedObject);
     draggedObject.day = imposition;
-    console.log("draggedObject is ", draggedObject);
+    console.log("object that is being added is ", draggedObject);
 
     //append dragged item to target taskList
     newList.push(draggedObject);
-    console.log("The item dropped is -> ", newList);
+    console.log("The compounded target list is ", newList);
 
-    //delete dragged item from source taskLlist
-    let sourceList = this.selectTaskList(itemDay).map(t => {
+    //delete dragged item from source taskList
+    console.log("original source list is", this.selectTaskList(itemDay));
+    let sourceList = this.selectTaskList(itemDay).filter(t => {
       return t.id !== Number(id);
     });
+    console.log("The reduced source list is ", sourceList);
 
     //update state
     const myKeyTarget = this.getKeyByValue(

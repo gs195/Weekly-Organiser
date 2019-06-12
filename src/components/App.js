@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/App.css";
 import generateID from "./id-generator.js";
+import {Item, Input, Button} from "./functions-group-a";
 
 class ToDoList extends React.Component {
   constructor(props) {
@@ -95,7 +96,7 @@ class ToDoList extends React.Component {
       return t.id === Number(event.target.id);
     });
     console.log("object being dragged is ", this.itemBeingDragged);
-    event.dataTransfer.setData("text/plain", event.target.id);
+    event.dataTransfer.setData("text/plain", event.target.key);
   };
 
   onDropHandler = () => {
@@ -113,14 +114,14 @@ class ToDoList extends React.Component {
       return (
         <Item
           id={task.id}
-          key={generateID()}
+          key={"Mon" + generateID()}
           description={task.text}
           onClick={this.handleStrikethrough}
           className={task.isDone ? "done" : "toDo"}
           draggable="true"
           onDragStart={this.onDragStartHandler}
           onDragOver={this.dragOverHandler}
-          onDragEnd={this.onDropHandler}
+          onDrop={this.onDropHandler}
         />
       );
     });
@@ -129,14 +130,14 @@ class ToDoList extends React.Component {
       return (
         <Item
           id={task.id}
-          key={generateID()}
+          key={"Tue" + generateID()}
           description={task.text}
           onClick={this.handleStrikethrough}
           className={task.isDone ? "done" : "toDo"}
           draggable="true"
           onDragStart={this.onDragStartHandler}
           onDragOver={this.dragOverHandler}
-          onDragEnd={this.onDropHandler}
+          onDrop={this.onDropHandler}
         />
       );
     });
@@ -170,51 +171,6 @@ class ToDoList extends React.Component {
       </div>
     );
   }
-}
-
-function Item({
-  description,
-  onClick,
-  className,
-  id,
-  draggable,
-  onDragStart,
-  onDragOver,
-  onDragEnd
-}) {
-  return (
-    <li
-      id={id}
-      className={className}
-      onClick={onClick}
-      draggable={draggable}
-      onDragStart={onDragStart}
-      onDragOver={onDragOver}
-      onDragEnd={onDragEnd}
-    >
-      {description}
-    </li>
-  );
-}
-
-function Input({ type, value, onKeyDown, placeholder, onChange }) {
-  return (
-    <input
-      type={type}
-      value={value}
-      onKeyDown={onKeyDown}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-  );
-}
-
-function Button({ type, onClick }) {
-  return (
-    <button type={type} onClick={onClick}>
-      Add Task
-    </button>
-  );
 }
 
 function App() {

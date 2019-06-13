@@ -20,7 +20,6 @@ class ToDoList extends React.Component {
     this.state = {
       lastUpdated: "",
       value: "",
-      valueTuesday: "",
       tasks: [
         { id: 1, text: "buy milk", isDone: false, day: days.Monday },
         { id: 2, text: "eat dinner", isDone: false, day: days.Monday },
@@ -145,32 +144,23 @@ class ToDoList extends React.Component {
     const getTasksOfDay = listDay =>
       this.state.tasks.filter(task => task.day === listDay);
 
-    // const daysKeys = Object.keys(days);
-
-    // // const tasksForEachDay = daysKeys.filter(key => {
-    // //   days[key] === "None";
-    // // });
-
-    // const getTasksofEachDay = () =>
-    //   daysKeys.map(key => {
-    //     if (days[key] !== "None") {
-    //       return (
-    //         <div
-    //           className="taskList"
-    //           onDrop={event => this.onDropHandler(event, days.Tuesday)}
-    //           onDragOver={this.dragOverHandler}
-    //         >
-    //           <p>{days.Tuesday}</p>
-    //           <SingleTaskList
-    //             tasks={getTasksOfDay(days.Tuesday)}
-    //             onDragStartHandler={this.onDragStartHandler}
-    //             handleStrikethrough={this.handleStrikethrough}
-    //             spanClickHandler={this.spanClickHandler}
-    //           />
-    //         </div>
-    //       );
-    //     }
-    //   });
+    const getTasksofEachDay = () => {
+      const filtered = Object.keys(days).filter(key => days[key] !== "None");
+      return filtered.map(key => {
+        return (
+          <SingleTaskList
+            key={generateID()}
+            tasks={getTasksOfDay(days[key])}
+            onDragStartHandler={this.onDragStartHandler}
+            handleStrikethrough={this.handleStrikethrough}
+            spanClickHandler={this.spanClickHandler}
+            onDropHandler={this.onDropHandler}
+            dragOverHandler={this.dragOverHandler}
+            theDay={days[key]}
+          />
+        );
+      });
+    };
 
     return (
       <div id="container">
@@ -188,73 +178,7 @@ class ToDoList extends React.Component {
         <div>
           <p className="info">Tasks pending: {this.tasksPending()}</p>
         </div>
-        <div className="organiser-container">
-          <div
-            className="taskList"
-            onDrop={event => this.onDropHandler(event, days.Monday)}
-            onDragOver={this.dragOverHandler}
-          >
-            <p>{days.Monday}</p>
-            <SingleTaskList
-              tasks={getTasksOfDay(days.Monday)}
-              onDragStartHandler={this.onDragStartHandler}
-              handleStrikethrough={this.handleStrikethrough}
-              spanClickHandler={this.spanClickHandler}
-            />
-          </div>
-          <div
-            className="taskList"
-            onDrop={event => this.onDropHandler(event, days.Tuesday)}
-            onDragOver={this.dragOverHandler}
-          >
-            <p>{days.Tuesday}</p>
-            <SingleTaskList
-              tasks={getTasksOfDay(days.Tuesday)}
-              onDragStartHandler={this.onDragStartHandler}
-              handleStrikethrough={this.handleStrikethrough}
-              spanClickHandler={this.spanClickHandler}
-            />
-          </div>
-          <div
-            className="taskList"
-            onDrop={event => this.onDropHandler(event, days.Wednesday)}
-            onDragOver={this.dragOverHandler}
-          >
-            <p>{days.Wednesday}</p>
-            <SingleTaskList
-              tasks={getTasksOfDay(days.Wednesday)}
-              onDragStartHandler={this.onDragStartHandler}
-              handleStrikethrough={this.handleStrikethrough}
-              spanClickHandler={this.spanClickHandler}
-            />
-          </div>
-          <div
-            className="taskList"
-            onDrop={event => this.onDropHandler(event, days.Thursday)}
-            onDragOver={this.dragOverHandler}
-          >
-            <p>{days.Thursday}</p>
-            <SingleTaskList
-              tasks={getTasksOfDay(days.Thursday)}
-              onDragStartHandler={this.onDragStartHandler}
-              handleStrikethrough={this.handleStrikethrough}
-              spanClickHandler={this.spanClickHandler}
-            />
-          </div>
-          <div
-            className="taskList"
-            onDrop={event => this.onDropHandler(event, days.Friday)}
-            onDragOver={this.dragOverHandler}
-          >
-            <p>{days.Friday}</p>
-            <SingleTaskList
-              tasks={getTasksOfDay(days.Friday)}
-              onDragStartHandler={this.onDragStartHandler}
-              handleStrikethrough={this.handleStrikethrough}
-              spanClickHandler={this.spanClickHandler}
-            />
-          </div>
-        </div>
+        <div className="organiser-container">{getTasksofEachDay()}</div>
       </div>
     );
   }

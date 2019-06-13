@@ -1,0 +1,195 @@
+body::before {
+  z-index: -1;
+  opacity: 0.4;
+}
+
+body {
+  box-sizing: border-box;
+  border-width: 0 1px;
+  font-family: sans-serif;
+  font-size: 2rem;
+  margin: 0 auto;
+  max-width: 700px;
+  min-height: 100vh;
+  padding: 1rem;
+  background: url(http://www.erikie.nl/wp-content/gallery/high-res-backgrounds/bg3.jpg);
+  background-position: center right;
+  background-attachment: fixed;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(40, 40, 41);
+}
+
+ul {
+  width: 100%;
+  display: block;
+  /* list-style-type: disc; */
+  margin-block-start: 10px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 10px;
+  padding-inline-start: 0px;
+}
+
+ul li:hover {
+  background: #d2d9dd;
+  border-radius: 4px;
+}
+
+.toDo {
+  padding: 0.5em 0;
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #a5b0b8;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 0.5em 0;
+  margin-left: 1em;
+}
+
+.form {
+  text-align: center;
+  width: 100%;
+  padding: 0.5em;
+  background: #f4f7f8;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+button {
+  position: relative;
+  display: inline;
+  padding: 10px 20px 10px 20px;
+  color: #fff;
+  background: #1abc9c;
+  font-size: 24px;
+  font-style: normal;
+  border: 1px solid #16a085;
+  border-width: 1px 1px 3px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #109177;
+}
+
+input {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  padding: 10px;
+  width: 74%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 7px;
+}
+
+input:focus {
+  background: #d2d9dd;
+}
+
+footer {
+  width: 100%;
+  text-align: right;
+  font-size: 12px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 20px;
+}
+
+footer p {
+  margin-bottom: 20px;
+  color: rgb(114, 113, 113);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 30px;
+  width: auto;
+  font-size: 12px;
+}
+
+p {
+  margin-bottom: 20px;
+  color: rgb(114, 113, 113);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 30px;
+  width: auto;
+  font-size: 24px;
+}
+
+.info {
+  margin-bottom: 20px;
+  color: rgb(114, 113, 113);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 20px;
+  width: auto;
+  text-align: center;
+}
+
+#completed {
+  float: left;
+  font-size: 18px;
+  margin-left: 80px;
+}
+
+#pending {
+  float: right;
+  font-size: 18px;
+  margin-right: 50px;
+}
+
+.organiser-container {
+  background: paleturquoise;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.taskList {
+  width: 200px;
+  height: 200px;
+  flex: left;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 250px;
+  min-height: 250px;
+  max-height: 400px;
+  overflow: auto;
+  padding: 0.2em;
+  list-style-position: inside;
+  background: #f4f7f8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 18px;
+  color: #696f74;
+  margin: 0.5em;
+  display: flex;
+}
+
+span {
+  font-family: "Comic Sans MS", "Comic Sans";
+  font-style: bold;
+  float: right;
+  color: #f4f7f8;
+  /* width: 2px; */
+  margin-right: 10px;
+}
+
+span:hover {
+  color: red;
+}

@@ -1,15 +1,14 @@
 import React from "react";
 import "../styles/App.css";
-import generateID from "./id-generator.js";
+import generateID from "./id-generator";
 import { Item, Input, Button } from "./functions-group-a";
-// import selectTaskList from "./task-list-selector";
+// import createItem from "./item-component";
 
-const days = { Monday: "Mon", Tuesday: "Tue" };
+const days = { None: "None", Monday: "Mon", Tuesday: "Tue" };
 
 class ToDoList extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       lastUpdated: "",
       value: "",
@@ -31,7 +30,6 @@ class ToDoList extends React.Component {
     const completedTasks = this.state.tasks.filter(t => {
       return t.isDone;
     });
-
     return this.state.tasks.length - completedTasks.length;
   };
 
@@ -57,21 +55,34 @@ class ToDoList extends React.Component {
   };
 
   taskListUpdate = () => {
-    // an onject literal is being directly appended to the tasks list
-    //in this.state because setState is being called immeiatedly after.
-    //Otherwise, the components would not be re-rendered and setState
-    //would need to be called in appending the object literal, which would
-    //be done by setting a new modified list to this.state.tasts.
     this.state.tasks.push({
       id: generateID(),
       text: this.state.value,
-      isDone: false
+      isDone: false,
+      day: days.Monday
     });
     this.setState({ value: "" });
   };
 
-  getKeyByValue = (object, value) => {
-    return Object.keys(object).find(key => object[key] === value);
+  spanClickHandler = (event, id) => {
+    let confirmation = window.confirm(
+      "Are you sure you want to delete this task? You cannot undo this action."
+    );
+    if (!confirmation) {return;}
+    let newArray = this.state.tasks.filter(task => {
+      if (task.id === id) {
+        task.isDone = true;
+        task.day = days.None;
+      }
+      return task;
+    });
+
+    console.log("newArray", newArray);
+
+    this.setState({
+      ...this.state,
+      newArray
+    });
   };
 
   handleClick() {
@@ -91,128 +102,44 @@ class ToDoList extends React.Component {
     }
   }
 
-  // selectTaskList(listid) {
-  //   console.log("input tasklist selector day is: ", listid);
-  //   switch (listid) {
-  //     case "Mon":
-  //       return this.state.tasks;
-  //     case "Tue":
-  //       return this.state.tasksTue;
-  //     default:
-  //       throw new Error(
-  //         "input parameter to selectTaskList function is not one of the days"
-  //       );
-  //   }
-  // }
-
   dragOverHandler = event => {
     event.preventDefault();
   };
 
-  onDragStartHandler = (event, id, itemDay) => {
+  onDragStartHandler = (event, id) => {
     console.log("id is ", id);
-    console.log("itemDay is ", itemDay);
-    event.dataTransfer.setData("id", id);
-    // this.itemBeingDragged = this.state.tasks.filter(t => {
-    //   return t.id === Number(id);
-    // });
-    // console.log("object being dragged is ", this.itemBeingDragged);
+    event.dataTransfer.setData("text/plain", id);
   };
 
-  onDropHandler = (event, imposition, itemDay, id) => {
-
+  onDropHandler = (event, imposition) => {
     console.log("imposition is", imposition);
-    let idty = event.dataTransfer.getData("id");
+    let idty = Number(event.dataTransfer.getData("text"));
 
-    let d = this.state.tasks.filter(task => {
-      if (task.id == idty) {
+    let newArray = this.state.tasks.filter(task => {
+      if (task.id === idty) {
         task.day = imposition;
       }
       return task;
     });
 
-    console.log("d", d);
+    console.log("d", newArray);
 
     this.setState({
       ...this.state,
-      d
+      newArray
     });
-
-    // imposition is day of new list, itemDay is day of old list
-    // console.log("!imposition is ", imposition);
-    // console.log("!itemDay is ", itemDay);
-    // console.log("id is ", id);
-    // //identify the taskList depending on source item's day attribute
-    // let a = [...this.state.tasks];
-    // let b = a.filter(t => {
-    //   return t.id !== this.itemBeingDragged[0].id;
-    // });
-    // console.log("b", b);
-
-    // let c = this.itemBeingDragged[0];
-    // c.id = imposition;
-
-    // console.log("c is", c);
-
-    // let newList = this.state.tasks.filter(t => {
-    //   return t.day === imposition;
-    // });
-    // console.log(
-    //   "original target list is",
-    //   newList
-    // );
-
-    // //replace the object's day attribute with the hard-coded one in Item TaskList
-    // let draggedObject = this.itemBeingDragged[0];
-    // console.log("object that is being dragged is ", draggedObject);
-    // draggedObject.day = imposition;
-    // console.log("object that is being added is ", draggedObject);
-
-    // //append dragged item to target taskList
-    // newList.push(draggedObject);
-    // console.log("The compounded target list is ", newList);
-
-    // //delete dragged item from source taskList
-    // let oldList = this.state.tasks.filter(t => {
-    //   return t.day === itemDay;
-    // });
-    // console.log(
-    //   "original src list is",
-    //   oldList
-    // );
-
-    // oldList = this.state.tasks.filter(t => {
-    //   return t.id !== Number(id);
-    // });
-    // console.log("The reduced src list is ", oldList);
-
-    // //update state
-    // const myKeyTarget = this.getKeyByValue(
-    //   this.state,
-    //   this.selectTaskList(imposition)
-    // );
-    // // console.log("myKeyTarget is ", myKeyTarget);
-    // const myKeySource = this.getKeyByValue(
-    //   this.state,
-    //   this.selectTaskList(itemDay)
-    // );
-
-    // this.state.myKeyTarget = newList;
-    // this.state.myKeySource = sourceList;
-    // let timeNow = Date.now();
-    // this.setState({ lastUpdated: timeNow });
-    // // console.log("myKeySource is ", myKeySource);
-    // // this.setState({ myKeyTarget: newList });
-    // // this.setState({ myKeySource: sourceList });
   };
 
   render() {
+    
+    // const mondayArray = this.state.tasks.filter(obj => obj.day === days.Monday);
+    // const mondayTaskList = createItem(mondayArray, days.Monday);
+
     const TaskList = this.state.tasks
       .filter(obj => obj.day === days.Monday)
       .map(task => {
         return (
           <Item
-            day={task.day}
             id={task.id}
             key={generateID()}
             description={task.text}
@@ -220,13 +147,11 @@ class ToDoList extends React.Component {
             className={task.isDone ? "done" : "toDo"}
             draggable="true"
             onDragStart={event => {
-              console.log("this is being called");
-              this.onDragStartHandler(event, task.id, task.day);
+              this.onDragStartHandler(event, task.id);
             }}
+            onClickSpan={event => this.spanClickHandler(event, task.id)}
             onDragOver={this.dragOverHandler}
-            onDrop={event =>
-              this.onDropHandler(event, days.Monday, task.day, task.id)
-            }
+            onDrop={event => this.onDropHandler(event, days.Monday)}
           />
         );
       });
@@ -234,11 +159,8 @@ class ToDoList extends React.Component {
     const TaskList2 = this.state.tasks
       .filter(obj => obj.day === days.Tuesday)
       .map(task => {
-        // const dayVar = 2;
         return (
           <Item
-            // day={dayVar}
-            day={task.day}
             id={task.id}
             key={generateID()}
             description={task.text}
@@ -246,21 +168,14 @@ class ToDoList extends React.Component {
             className={task.isDone ? "done" : "toDo"}
             draggable="true"
             onDragStart={event => {
-              console.log("tue is being called");
-              this.onDragStartHandler(event, task.id, task.day);
+              this.onDragStartHandler(event, task.id);
             }}
-            onDragOver={this.dragOverHandler}
-            onDrop={event =>
-              this.onDropHandler(event, days.Tuesday, task.day, task.id)
-            }
+            onClickSpan={event => this.spanClickHandler(event, task.id)}
+            // onDragOver={this.dragOverHandler}
+            // onDrop={event => this.onDropHandler(event, days.Tuesday)}
           />
         );
       });
-
-    //draggable -> to make the element in question a draggable component
-    //onDrag -> an event listener that is triggered when the graggable element is
-    //          being dragged
-    //ondragstart -> same as onDrag except it is triggered when dragging first starts
 
     return (
       <div id="container">
@@ -277,11 +192,21 @@ class ToDoList extends React.Component {
         <div>
           <p className="info">Tasks pending: {this.tasksPending()}</p>
         </div>
-        <div className="dragStart">
-          <ul>{TaskList}</ul>
-        </div>
-        <div className="dragEnd">
-          <ul>{TaskList2}</ul>
+        <div className="organiser-container">
+          <div
+            className="dragStart"
+            onDrop={event => this.onDropHandler(event, days.Monday)}
+            onDragOver={this.dragOverHandler}
+          >
+            <ul>{TaskList}</ul>
+          </div>
+          <div
+            className="dragEnd"
+            onDrop={event => this.onDropHandler(event, days.Tuesday)}
+            onDragOver={this.dragOverHandler}
+          >
+            <ul>{TaskList2}</ul>
+          </div>
         </div>
       </div>
     );

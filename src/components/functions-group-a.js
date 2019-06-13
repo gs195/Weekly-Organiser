@@ -5,11 +5,11 @@ function Item({
   onClick,
   className,
   id,
-  day,
   draggable,
   onDragStart,
   onDragOver,
-  onDrop
+  onDrop,
+  onClickSpan
 }) {
   return (
     <li
@@ -20,9 +20,9 @@ function Item({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      day={day}
     >
       {description}
+      <span onClick={onClickSpan}>X</span>
     </li>
   );
 }

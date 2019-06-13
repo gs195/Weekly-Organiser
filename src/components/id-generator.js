@@ -1,4 +1,4 @@
-let record = [1, 2, 3, 4, 5, 6, 7];
+let record = [0];
 
 function generateID() {
   let lastNumber = record[record.length - 1];

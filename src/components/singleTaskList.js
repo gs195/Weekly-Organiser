@@ -12,15 +12,18 @@ function SingleTaskList({
   dragOverHandler,
   theDay
 }) {
-  console.log("tasks is", tasks);
   return (
     <div
-      className="taskList"
-      onDrop={event => onDropHandler(event, theDay)}
-      onDragOver={dragOverHandler}
+    // className="taskList"
+    // onDrop={event => onDropHandler(event, theDay)}
+    // onDragOver={dragOverHandler}
     >
       <p>{theDay}</p>
-      <ul>
+      <ul
+        className="taskList"
+        onDrop={event => onDropHandler(event, theDay)}
+        onDragOver={dragOverHandler}
+      >
         {tasks.map(task => (
           <Item
             id={task.id}

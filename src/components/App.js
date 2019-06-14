@@ -20,6 +20,13 @@ class ToDoList extends React.Component {
     this.state = {
       lastUpdated: "",
       value: "",
+      fieldValue: [
+        { mondayValue: "" },
+        { tuesdayValue: "" },
+        { wednesdayValue: "" },
+        { thursdayValue: "" },
+        { fridayValue: "" }
+      ],
       tasks: [
         { id: 1, text: "buy milk", isDone: false, day: days.Monday },
         { id: 2, text: "eat dinner", isDone: false, day: days.Monday },
@@ -87,8 +94,6 @@ class ToDoList extends React.Component {
       return task;
     });
 
-    console.log("newArray", newArray);
-
     this.setState({
       ...this.state,
       newArray
@@ -117,12 +122,11 @@ class ToDoList extends React.Component {
   };
 
   onDragStartHandler = (event, id) => {
-    console.log("id is ", id);
     event.dataTransfer.setData("text/plain", id);
   };
 
   onDropHandler = (event, imposition) => {
-    console.log("imposition is", imposition);
+    // console.log("imposition is", imposition);
     let idty = Number(event.dataTransfer.getData("text"));
 
     let newArray = this.state.tasks.filter(task => {
@@ -131,8 +135,6 @@ class ToDoList extends React.Component {
       }
       return task;
     });
-
-    console.log("d", newArray);
 
     this.setState({
       ...this.state,
@@ -145,7 +147,9 @@ class ToDoList extends React.Component {
       this.state.tasks.filter(task => task.day === listDay);
 
     const getTasksofEachDay = () => {
-      const filtered = Object.keys(days).filter(key => days[key] !== "None");
+      const filtered = Object.keys(days).filter(
+        key => days[key] !== "None" && days[key] !== "Weekend"
+      );
       return filtered.map(key => {
         return (
           <SingleTaskList
@@ -166,6 +170,7 @@ class ToDoList extends React.Component {
       <div id="container">
         <div className="form">
           <Input
+            // day={"Tuesday"}
             // id={generateID()}
             type="text"
             value={this.state.value}

@@ -49,4 +49,29 @@ function Button({ type, onClick }) {
   );
 }
 
-export { Item, Input, Button };
+function getTodaysDay(theDay) {
+  const today = new Date();
+  let todayString;
+  switch (Number(today.getDay())) {
+    case 1:
+      todayString = "Monday";
+      break;
+    case 2:
+      todayString = "Tuesday";
+      break;
+    case 3:
+      todayString = "Wednesday";
+      break;
+    case 4:
+      todayString = "Thursday";
+      break;
+    case 5:
+      todayString = "Friday";
+      break;
+    default:
+      todayString = "taskList";
+  }
+  return todayString === theDay ? "today" : "taskList";
+}
+
+export { Item, Input, Button, getTodaysDay };

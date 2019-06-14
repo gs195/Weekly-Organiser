@@ -1,6 +1,6 @@
 // import generateID from "./id-generator";
 import React from "react";
-import { Input, Item } from "./functions-group-a";
+import { Input, Item, getTodaysDay } from "./functions-group-a";
 // import App from "./App";
 
 function SingleTaskList({
@@ -18,6 +18,7 @@ function SingleTaskList({
   return (
     <div className="inputAndList-container">
       <Input
+        className="taskInput"
         type="text"
         value={handleInputField(theDay)}
         onKeyDown={event => handleEnterPress(event, theDay)}
@@ -25,7 +26,7 @@ function SingleTaskList({
         onChange={event => handleNewInput(event, theDay)}
       />
       <ul
-        className="taskList"
+        className={getTodaysDay(theDay)}
         onDrop={event => onDropHandler(event, theDay)}
         onDragOver={dragOverHandler}
       >

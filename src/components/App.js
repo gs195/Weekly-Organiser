@@ -211,6 +211,7 @@ class ToDoList extends React.Component {
           <div id="newsBoxC" />
           <div id="newsBoxD" />
         </div>
+        <textarea className="notes" placeholder="Write down your notes here..."/>
       </div>
     );
   }

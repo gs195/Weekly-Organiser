@@ -4,7 +4,7 @@ body::before {
 }
 
 html {
-  height: 100vh;
+  height: 100%;
 }
 
 body {
@@ -13,6 +13,7 @@ body {
   font-size: 1rem;
   /* margin: 0 auto; */
   max-width: 100%;
+  height: 100%;
   /* width: auto; */
   /* height: 1000px; */
   min-height: 100vh;
@@ -29,7 +30,6 @@ body {
   grid-area: body;
   /* height: 890px; */
   /* min-height: auto; */
-  display: grid;
   grid-gap: auto;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -99,6 +99,7 @@ ul {
   margin-inline-end: 10px;
   padding-inline-start: 10px;
   align-self: flex-end;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   position: relative;
   border: 1px solid #e8e8e8;
@@ -191,18 +192,59 @@ ul li:hover {
   padding-left: 5px;
 }
 
-ul .taskList {
-  /* width: 250px; */
-  /* min-width: 200px; */
-  /* height: 92%; */
-  /* max-height: 250px; */
-  /* overflow: scroll; */
-  /* margin-block-start: 10px; */
-  /* margin-block-end: 0px; */
-  /* margin-inline-start: 10px; */
-  /* margin-inline-end: 10px; */
-  /* padding-inline-start: 20px; */
-  /* align-self: flex-end; */
+.today li:hover {
+  background: #88fc45;
+  border-radius: 4px;
+  padding-left: 5px;
+}
+
+.today {
+  background: #b4ff88; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #b4ff88 81%,
+    #b4ff88 82%,
+    #b4ff88 82%,
+    #b4ffc6 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(81%, #b4ff88),
+    color-stop(82%, #b4ff88),
+    color-stop(82%, #b4ff88),
+    color-stop(100%, #b4ffc6)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    -45deg,
+    #b4ff88 81%,
+    #b4ff88 82%,
+    #b4ff88 82%,
+    #b4ffc6 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    -45deg,
+    #b4ff88 81%,
+    #b4ff88 82%,
+    #b4ff88 82%,
+    #b4ffc6 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    -45deg,
+    #b4ff88 81%,
+    #b4ff88 82%,
+    #b4ff88 82%,
+    #b4ffc6 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    135deg,
+    #b4ff88 81%,
+    #b4ff88 82%,
+    #b4ff88 82%,
+    #b4ffc6 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ff88', endColorstr='#b4ffc6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .toDo {
@@ -228,6 +270,10 @@ span {
   /* width: 2px; */
   margin-right: 10px;
   display: block;
+}
+
+.today span {
+  color: #b4ff88;
 }
 
 .wrapper:hover span {
@@ -304,4 +350,15 @@ span:hover {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+.notes {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.notes::placeholder {
+  text-align: left;
 }

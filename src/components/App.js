@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/App.css";
 import generateID from "./id-generator";
-import { Input, Button } from "./functions-group-a";
+// import { Button } from "./functions-group-a";
 import SingleTaskList from "./singleTaskList";
 
 const days = {
@@ -21,11 +21,11 @@ class ToDoList extends React.Component {
       lastUpdated: "",
       value: "",
       fieldValue: [
-        { mondayValue: "" },
-        { tuesdayValue: "" },
-        { wednesdayValue: "" },
-        { thursdayValue: "" },
-        { fridayValue: "" }
+        { value: "", day: days.Monday },
+        { value: "", day: days.Tuesday },
+        { value: "", day: days.Wednesday },
+        { value: "", day: days.Thursday },
+        { value: "", day: days.Friday }
       ],
       tasks: [
         { id: 1, text: "buy milk", isDone: false, day: days.Monday },
@@ -65,18 +65,26 @@ class ToDoList extends React.Component {
     }));
   }
 
-  handleNewInput = event => {
-    this.setState({ value: event.target.value });
+  handleNewInput = (event, theDay) => {
+    let newArray = this.state.fieldValue.map(obj => {
+      if (obj.day === theDay) {
+        obj.value = event.target.value;
+      }
+      return obj;
+    });
+    console.log("handleNewInput newArray is: ", newArray);
+    this.setState({ fieldValue: newArray });
   };
 
-  taskListUpdate = () => {
-    this.state.tasks.push({
+  taskListUpdate = (theText, theDay) => {
+    let newArray = [...this.state.tasks];
+    newArray.push({
       id: generateID(),
-      text: this.state.value,
+      text: theText,
       isDone: false,
-      day: days.Monday
+      day: theDay
     });
-    this.setState({ value: "" });
+    this.setState({ tasks: newArray });
   };
 
   spanClickHandler = (event, id) => {
@@ -100,21 +108,33 @@ class ToDoList extends React.Component {
     });
   };
 
-  handleClick() {
-    if (this.state.value === "") {
-      return;
-    }
-    this.taskListUpdate();
+  handleClick(event, theDay) {
+    if (event.target.value === "") return;
+    let theText;
+    let newFieldValueArray = this.state.fieldValue.map(obj => {
+      if (obj.day === theDay) {
+        theText = obj.value;
+        obj.value = "";
+      }
+      return obj;
+    });
+    this.taskListUpdate(theText, theDay);
+    this.setState({ fieldValue: newFieldValueArray });
   }
 
-  handleEnterPress(event) {
-    if (event.target.value === "") {
-      return;
-    }
+  handleEnterPress(event, theDay) {
     let enterKeyCode = 13;
-    if (event.keyCode === enterKeyCode) {
-      this.taskListUpdate();
-    }
+    if (event.keyCode !== enterKeyCode || event.target.value === "") return;
+    let theText;
+    let newFieldValueArray = this.state.fieldValue.map(obj => {
+      if (obj.day === theDay) {
+        theText = obj.value;
+        obj.value = "";
+      }
+      return obj;
+    });
+    this.taskListUpdate(theText, theDay);
+    this.setState({ fieldValue: newFieldValueArray });
   }
 
   dragOverHandler = event => {
@@ -126,7 +146,6 @@ class ToDoList extends React.Component {
   };
 
   onDropHandler = (event, imposition) => {
-    // console.log("imposition is", imposition);
     let idty = Number(event.dataTransfer.getData("text"));
 
     let newArray = this.state.tasks.filter(task => {
@@ -142,25 +161,41 @@ class ToDoList extends React.Component {
     });
   };
 
+  handleInputField = theDay => {
+    let newFieldValueArray = this.state.fieldValue.filter(
+      obj => obj.day === theDay
+    );
+    console.log("new field value array is: ", newFieldValueArray);
+    return newFieldValueArray[0].value;
+  };
+
   render() {
     const getTasksOfDay = listDay =>
       this.state.tasks.filter(task => task.day === listDay);
 
+      
     const getTasksofEachDay = () => {
       const filtered = Object.keys(days).filter(
         key => days[key] !== "None" && days[key] !== "Weekend"
       );
-      return filtered.map(key => {
+      console.log(
+        "type of handleEnterPress (app.js) is ",
+        typeof this.handleEnterPress
+      );
+      return filtered.map((key, idx) => {
         return (
           <SingleTaskList
-            key={generateID()}
+            key={idx}
             tasks={getTasksOfDay(days[key])}
             onDragStartHandler={this.onDragStartHandler}
             handleStrikethrough={this.handleStrikethrough}
             spanClickHandler={this.spanClickHandler}
             onDropHandler={this.onDropHandler}
             dragOverHandler={this.dragOverHandler}
+            handleInputField={this.handleInputField}
             theDay={days[key]}
+            handleEnterPress={this.handleEnterPress}
+            handleNewInput={this.handleNewInput}
           />
         );
       });
@@ -168,19 +203,13 @@ class ToDoList extends React.Component {
 
     return (
       <div id="container">
-        <div className="form">
-          <Input
-            // day={"Tuesday"}
-            // id={generateID()}
-            type="text"
-            value={this.state.value}
-            onKeyDown={this.handleEnterPress}
-            placeholder="Enter task here..."
-            onChange={this.handleNewInput}
+        {/* <div className="form">
+          <Button
+            type="Button"
+            onClick={event => this.handleClick(event, days.Monday)}
           />
-          <Button type="Button" onClick={this.handleClick} />
-        </div>
-        <div>
+        </div> */}
+        <div className="info">
           <p className="info">Tasks pending: {this.tasksPending()}</p>
         </div>
         <div className="organiser-container">{getTasksofEachDay()}</div>

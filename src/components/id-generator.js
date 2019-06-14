@@ -1,10 +1,9 @@
-let record = [0];
+let record = 7;
 
 function generateID() {
-  let lastNumber = record[record.length - 1];
-  let newNumber = lastNumber + 1;
-  record.push(newNumber);
-  return newNumber;
+  let lastNumber = record;
+  record = lastNumber + 1;
+  return record;
 }
 
 export default generateID;

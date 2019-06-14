@@ -70,7 +70,6 @@ class ToDoList extends React.Component {
       }
       return obj;
     });
-    console.log("handleNewInput newArray is: ", newArray);
     this.setState({ fieldValue: newArray });
   };
 
@@ -139,20 +138,21 @@ class ToDoList extends React.Component {
     event.preventDefault();
   };
 
-  onDragStartHandler = (event, id) => {
-    event.dataTransfer.setData("text/plain", id);
+  onDragStartHandler = (event, text, id) => {
+    // let jsonData = { description: text, identity: id };
+    event.dataTransfer.setData("text/plain", text);
+    this.idOfTransferredData = id;
   };
 
   onDropHandler = (event, imposition) => {
-    let idty = Number(event.dataTransfer.getData("text")); //this is the first parameter in dataTransfer.setData() above
-
+    // let idty = JSON.parse(event.dataTransfer.getData("text")); //this is the first parameter in dataTransfer.setData() above
+    let idty = event.dataTransfer.getData("text");
     let newArray = this.state.tasks.filter(task => {
-      if (task.id === idty) {
+      if ((task.text === idty)&&(task.id === this.idOfTransferredData)) {
         task.day = imposition;
       }
       return task;
     });
-
     this.setState({
       ...this.state,
       newArray
@@ -163,7 +163,6 @@ class ToDoList extends React.Component {
     let newFieldValueArray = this.state.fieldValue.filter(
       obj => obj.day === theDay
     );
-    console.log("new field value array is: ", newFieldValueArray);
     return newFieldValueArray[0].value;
   };
 
@@ -171,14 +170,9 @@ class ToDoList extends React.Component {
     const getTasksOfDay = listDay =>
       this.state.tasks.filter(task => task.day === listDay);
 
-      
     const getTasksofEachDay = () => {
       const filtered = Object.keys(days).filter(
         key => days[key] !== "None" && days[key] !== "Weekend"
-      );
-      console.log(
-        "type of handleEnterPress (app.js) is ",
-        typeof this.handleEnterPress
       );
       return filtered.map((key, idx) => {
         return (
@@ -211,6 +205,12 @@ class ToDoList extends React.Component {
           <p className="info">Tasks pending: {this.tasksPending()}</p>
         </div>
         <div className="organiser-container">{getTasksofEachDay()}</div>
+        <div className="news-container">
+          <div id="newsBoxA" />
+          <div id="newsBoxB" />
+          <div id="newsBoxC" />
+          <div id="newsBoxD" />
+        </div>
       </div>
     );
   }

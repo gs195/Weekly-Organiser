@@ -12,18 +12,20 @@ function Item({
   onClickSpan
 }) {
   return (
-    <li
-      id={id}
-      className={className}
-      onClick={onClick}
-      draggable={draggable}
-      onDragStart={onDragStart}
-      onDragOver={onDragOver}
-      onDrop={onDrop}
-    >
-      {description}
-      <span onClick={onClickSpan}>X</span>
-    </li>
+    <div className="wrapper">
+      <li
+        id={id}
+        className={className}
+        onClick={onClick}
+        draggable={draggable}
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+      >
+        {description}
+        <span onClick={onClickSpan}>X</span>
+      </li>
+    </div>
   );
 }
 

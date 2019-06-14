@@ -17,7 +17,6 @@ function SingleTaskList({
 }) {
   return (
     <div className="inputAndList-container">
-      {/* <p>{theDay}</p> */}
       <Input
         type="text"
         value={handleInputField(theDay)}
@@ -39,7 +38,7 @@ function SingleTaskList({
             className={task.isDone ? "done" : "toDo"}
             draggable="true"
             onDragStart={event => {
-              onDragStartHandler(event, task.id);
+              onDragStartHandler(event, task.text, task.id);
             }}
             onClickSpan={event => {
               spanClickHandler(event, task.id);

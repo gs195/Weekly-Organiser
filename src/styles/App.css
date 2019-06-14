@@ -3,14 +3,20 @@ body::before {
   opacity: 0.4;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 1rem;
   /* margin: 0 auto; */
   max-width: 100%;
+  /* width: auto; */
+  /* height: 1000px; */
   min-height: 100vh;
-  max-height: 400px;
+  /* max-height: 400px; */
   /* padding: 1rem; */
   background: whitesmoke;
   /* background: url(http://www.erikie.nl/wp-content/gallery/high-res-backgrounds/bg3.jpg);
@@ -21,7 +27,8 @@ body {
 #container {
   display: grid;
   grid-area: body;
-  height: 750px;
+  /* height: 890px; */
+  /* min-height: auto; */
   display: grid;
   grid-gap: auto;
   grid-template-columns: repeat(6, 1fr);
@@ -52,12 +59,13 @@ input {
   margin-left: 10px;
 }
 
-input::placeholder{
+input::placeholder {
   text-align: center;
 }
 
 input:focus {
   background: #d2d9dd;
+  outline: none !important;
 }
 
 .organiser-container {
@@ -65,10 +73,10 @@ input:focus {
   align-content: center;
   width: 100%;
   min-width: 1440px;
-  /* height: 300px; */
+  height: 300px;
   grid-column-start: 1;
   grid-column-end: 7;
-  grid-row-start: 4;
+  grid-row-start: 3;
   grid-row-end: 5;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -98,7 +106,6 @@ ul {
   font-family: "Reenie Beanie";
   font-size: 16x;
   border-bottom-right-radius: 60px 5px;
-  display: inline-block;
   background: #ffff88; /* Old browsers */
   background: -moz-linear-gradient(
     -45deg,
@@ -180,7 +187,6 @@ ul:after {
 
 ul li:hover {
   background: #fff349;
-  /* background: #d2d9dd; */
   border-radius: 4px;
   padding-left: 5px;
 }
@@ -224,6 +230,78 @@ span {
   display: block;
 }
 
+.wrapper:hover span {
+  color: red;
+}
+
 span:hover {
   color: red;
+}
+
+.news-container {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 5;
+  grid-column-end: 7;
+  display: block;
+  background: paleturquoise;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.news-container #newsBoxA {
+  width: auto;
+  height: auto;
+  margin: 10px;
+  background: red;
+  border: black;
+  border-style: solid;
+  border-color: #8a97a0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.news-container #newsBoxB {
+  width: auto;
+  height: auto;
+  margin: 10px;
+  background: yellow;
+  box-sizing: border-box;
+  border: black;
+  border-style: solid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.news-container #newsBoxC {
+  width: auto;
+  height: auto;
+  margin: 10px;
+  background: blue;
+  border: black;
+  border-style: solid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.news-container #newsBoxD {
+  width: auto;
+  height: auto;
+  margin: 10px;
+  background: green;
+  border: black;
+  border-style: solid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }

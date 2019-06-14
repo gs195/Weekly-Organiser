@@ -16,14 +16,9 @@ function SingleTaskList({
   handleInputField
 }) {
   return (
-    <div
-    // className="taskList"
-    // onDrop={event => onDropHandler(event, theDay)}
-    // onDragOver={dragOverHandler}
-    >
-      <p>{theDay}</p>
+    <div className="inputAndList-container">
+      {/* <p>{theDay}</p> */}
       <Input
-        // id={generateID()}
         type="text"
         value={handleInputField(theDay)}
         onKeyDown={event => handleEnterPress(event, theDay)}

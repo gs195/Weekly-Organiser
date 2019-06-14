@@ -7,11 +7,11 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 1rem;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   max-width: 100%;
   min-height: 100vh;
   max-height: 400px;
-  padding: 1rem;
+  /* padding: 1rem; */
   background: whitesmoke;
   /* background: url(http://www.erikie.nl/wp-content/gallery/high-res-backgrounds/bg3.jpg);
   background-position: center right;
@@ -24,41 +24,24 @@ body {
   height: 750px;
   display: grid;
   grid-gap: auto;
-  grid-template-columns: repeat(6, auto);
-  grid-template-rows: repeat(4, auto);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   /* grid-template-columns: auto auto auto auto auto auto;
   grid-template-rows: auto auto auto auto; */
   /* grid-column-gap: 30px;
   grid-row-gap: 30px; */
 }
 
-.form {
-  text-align: center;
-  width: 90%;
-  height: 30px;
-  max-width: 400px;
-  min-width: 400px;
-  background: #f4f7f8;
-  padding: 20px;
-  border-radius: 8px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 3;
-  align-self: flex-end;
-}
-
 input {
   font-family: Georgia, "Times New Roman", Times, serif;
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  border-radius: 4px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
   font-size: 15px;
   padding: 9px;
-  width: 74%;
+  width: 92%;
+  min-width: 262px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -66,33 +49,23 @@ input {
   color: #8a97a0;
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
-  margin-bottom: 7px;
+  margin-left: 10px;
+}
+
+input::placeholder{
+  text-align: center;
 }
 
 input:focus {
   background: #d2d9dd;
 }
 
-button {
-  position: relative;
-  display: inline;
-  padding: 5px 12px;
-  color: #fff;
-  background: #1abc9c;
-  font-size: 18px;
-  font-style: normal;
-  border: 1px solid #16a085;
-  border-width: 1px 1px 3px;
-  border-radius: 5px;
-}
-
-button:hover {
-  background: #109177;
-}
-
 .organiser-container {
+  padding-top: 20px;
+  align-content: center;
   width: 100%;
-  height: 500px;
+  min-width: 1440px;
+  /* height: 300px; */
   grid-column-start: 1;
   grid-column-end: 7;
   grid-row-start: 4;
@@ -101,22 +74,22 @@ button:hover {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 0px;
   background-color: #b57c36;
-background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
   /* background-color: #cc8800;
   background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png); */
 }
 
 ul {
-  width: 250px;
-  min-width: 200px;
-  height: 92%;
+  width: 88%;
+  min-width: 250px;
+  height: 250px;
   max-height: 250px;
   overflow: scroll;
-  margin-block-start: 10px;
-  margin-block-end: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 10px;
   margin-inline-start: 10px;
   margin-inline-end: 10px;
-  padding-inline-start: 20px;
+  padding-inline-start: 10px;
   align-self: flex-end;
 
   position: relative;
@@ -190,7 +163,7 @@ ul:after {
   -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
   transform: matrix(-1, -0.1, 0, 1, 0, 0);
 }
-  /* width: auto;
+/* width: auto;
   min-width: 200px;
   height: 92%;
   max-height: 300px;
@@ -212,18 +185,18 @@ ul li:hover {
   padding-left: 5px;
 }
 
-.taskList {
-  width: 250px;
-  min-width: 200px;
-  height: 92%;
-  max-height: 250px;
-  overflow: scroll;
-  margin-block-start: 10px;
-  margin-block-end: 0px;
-  margin-inline-start: 10px;
-  margin-inline-end: 10px;
-  padding-inline-start: 20px;
-  align-self: flex-end;
+ul .taskList {
+  /* width: 250px; */
+  /* min-width: 200px; */
+  /* height: 92%; */
+  /* max-height: 250px; */
+  /* overflow: scroll; */
+  /* margin-block-start: 10px; */
+  /* margin-block-end: 0px; */
+  /* margin-inline-start: 10px; */
+  /* margin-inline-end: 10px; */
+  /* padding-inline-start: 20px; */
+  /* align-self: flex-end; */
 }
 
 .toDo {
@@ -254,5 +227,3 @@ span {
 span:hover {
   color: red;
 }
-
-

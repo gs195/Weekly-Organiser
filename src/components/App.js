@@ -49,9 +49,7 @@ class ToDoList extends React.Component {
   };
 
   handleStrikethrough(event) {
-    console.log("event.target.id is: ", event.target.id);
     const targetId = Number(event.target.id);
-
     this.setState(prevState => ({
       //synthetic event gets nullified in setState()
       tasks: prevState.tasks.map(obj =>
@@ -146,7 +144,7 @@ class ToDoList extends React.Component {
   };
 
   onDropHandler = (event, imposition) => {
-    let idty = Number(event.dataTransfer.getData("text"));
+    let idty = Number(event.dataTransfer.getData("text")); //this is the first parameter in dataTransfer.setData() above
 
     let newArray = this.state.tasks.filter(task => {
       if (task.id === idty) {

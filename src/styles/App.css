@@ -435,11 +435,11 @@ span:hover {
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-.notes:hover {
+/* .notes:hover {
   height: 355px;
   max-width: 410px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
-}
+} */
 
 .notes:focus {
   outline: none !important;

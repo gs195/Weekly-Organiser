@@ -236,8 +236,26 @@ class ToDoList extends React.Component {
         </div>
         <div className="organiser-container">{getTasksofEachDay()}</div>
         <div className="news-container">
-          <div id="newsBoxA" />
-          <div id="newsBoxB" />
+          <div id="newsBoxA">
+            <a
+              href="https://news.google.com/__i/rss/rd/articles/CBMiigFodHRwczovL3d3dy5jaGFubmVsbmV3c2FzaWEuY29tL25ld3Mvd29ybGQvZ290LWFuLWFudGliaW90aWMtcHJlc2NyaXB0aW9uLWZyb20teW91ci1kZW50aXN0LS1jaGFuY2VzLWFyZS0taXQtbWlnaHQtYmUtdW5uZWNlc3NhcnktMTE2Mjg2OTjSAQA?oc=5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              (Reuters Health) - More than three-quarters of antibiotic
+              prescriptions...
+            </a>
+          </div>
+          <div id="newsBoxB">
+            <a
+              href="https://news.google.com/__i/rss/rd/articles/CBMiXWh0dHBzOi8vYmdyLmNvbS8yMDE5LzA2LzE0L2dhbGF4eS1mb2xkLXJlbGVhc2UtZGF0ZS1kZWxheWVkLWZvcmV2ZXItZ2l2ZS11cC1idXktYS1nYWxheHktczEwL9IBYWh0dHBzOi8vYmdyLmNvbS8yMDE5LzA2LzE0L2dhbGF4eS1mb2xkLXJlbGVhc2UtZGF0ZS1kZWxheWVkLWZvcmV2ZXItZ2l2ZS11cC1idXktYS1nYWxheHktczEwL2FtcC8?oc=5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sorry, Galaxy Fold fans, but I have to say it: I told you so -
+              BGR...
+            </a>
+          </div>
           <div id="newsBoxC" />
           <div id="newsBoxD" />
         </div>

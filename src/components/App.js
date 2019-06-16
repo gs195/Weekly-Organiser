@@ -3,6 +3,7 @@ import "../styles/App.css";
 import generateID from "./id-generator";
 // import { Button } from "./functions-group-a";
 import SingleTaskList from "./singleTaskList";
+import { getDateStamp } from "./functions-group-a";
 
 const days = {
   None: "None",
@@ -28,12 +29,40 @@ class ToDoList extends React.Component {
         { value: "", day: days.Friday }
       ],
       tasks: [
-        { id: 1, text: "buy milk", isDone: false, day: days.Monday },
-        { id: 2, text: "eat dinner", isDone: false, day: days.Monday },
-        { id: 3, text: "nail javascript", isDone: false, day: days.Monday },
-        { id: 4, text: "give feedback", isDone: false, day: days.Monday },
+        {
+          id: 1,
+          text: "Complete CSS styling for react-app assignment",
+          isDone: false,
+          day: days.Monday
+        },
+        {
+          id: 2,
+          text:
+            "Carry out research on how to make responsive websites for touch screen smartphones",
+          isDone: false,
+          day: days.Monday
+        },
+        {
+          id: 3,
+          text:
+            "Figure out how to do question 59 of Section 3 of the 2017 GMAT prep book (do we use game theory?)",
+          isDone: false,
+          day: days.Tuesday
+        },
+        {
+          id: 4,
+          text: "Apply for finance class before 5pm dealine on Friday",
+          isDone: false,
+          day: days.Wednesday
+        },
         { id: 5, text: "find nemo", isDone: false, day: days.Monday },
-        { id: 6, text: "find my keys", isDone: false, day: days.Tuesday }
+        {
+          id: 6,
+          text:
+            "Get a new bed from IKEA or furniture42 (check selection of both)",
+          isDone: false,
+          day: days.Friday
+        }
       ]
     };
     this.handleEnterPress = this.handleEnterPress.bind(this);
@@ -148,7 +177,7 @@ class ToDoList extends React.Component {
     // let idty = JSON.parse(event.dataTransfer.getData("text")); //this is the first parameter in dataTransfer.setData() above
     let idty = event.dataTransfer.getData("text");
     let newArray = this.state.tasks.filter(task => {
-      if ((task.text === idty)&&(task.id === this.idOfTransferredData)) {
+      if (task.text === idty && task.id === this.idOfTransferredData) {
         task.day = imposition;
       }
       return task;
@@ -202,7 +231,8 @@ class ToDoList extends React.Component {
           />
         </div> */}
         <div className="info">
-          <p className="info">Tasks pending: {this.tasksPending()}</p>
+          <p className="date">{getDateStamp()}</p>
+          <p className="quote">Mongabay Rainforest, Brazil</p>
         </div>
         <div className="organiser-container">{getTasksofEachDay()}</div>
         <div className="news-container">
@@ -211,7 +241,11 @@ class ToDoList extends React.Component {
           <div id="newsBoxC" />
           <div id="newsBoxD" />
         </div>
-        <textarea className="notes" placeholder="Write down your notes here..."/>
+        <textarea
+          id="instructions"
+          className="notes"
+          placeholder="Write down your notes here..."
+        />
       </div>
     );
   }

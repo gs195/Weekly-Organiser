@@ -74,4 +74,79 @@ function getTodaysDay(theDay) {
   return todayString === theDay ? "today" : "taskList";
 }
 
-export { Item, Input, Button, getTodaysDay };
+function getDateStamp() {
+  const today = new Date();
+  let dayToday;
+  let monthToday;
+  let dateToday = today.getDate();
+  switch (Number(today.getDay())) {
+    case 0:
+      dayToday = "Sunday";
+      break;
+    case 1:
+      dayToday = "Monday";
+      break;
+    case 2:
+      dayToday = "Tuesday";
+      break;
+    case 3:
+      dayToday = "Wednesday";
+      break;
+    case 4:
+      dayToday = "Thursday";
+      break;
+    case 5:
+      dayToday = "Friday";
+      break;
+    case 6:
+      dayToday = "Saturday";
+      break;
+    default:
+      dayToday = "Error";
+  }
+
+  switch (Number(today.getMonth())) {
+    case 0:
+      monthToday = "January";
+      break;
+    case 1:
+      monthToday = "February";
+      break;
+    case 2:
+      monthToday = "March";
+      break;
+    case 3:
+      monthToday = "April";
+      break;
+    case 4:
+      monthToday = "May";
+      break;
+    case 5:
+      monthToday = "June";
+      break;
+    case 6:
+      monthToday = "July";
+      break;
+    case 7:
+      monthToday = "August";
+      break;
+    case 8:
+      monthToday = "September";
+      break;
+    case 9:
+      monthToday = "October";
+      break;
+    case 10:
+      monthToday = "November";
+      break;
+    case 11:
+      monthToday = "December";
+      break;
+    default:
+      monthToday = "Error";
+  }
+
+  return `${dayToday}, ${dateToday} ${monthToday}`;
+}
+
+export { Item, Input, Button, getTodaysDay, getDateStamp };

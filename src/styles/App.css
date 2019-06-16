@@ -4,26 +4,17 @@ html {
 }
 
 body {
-  background-color: #b57c36;
+  background-color: #d6b980;
   background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-  /* background: url(https://wallpapercave.com/wp/wp4106426.jpg); */
   background-position: center;
   background-attachment: relative;
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 1rem;
-  /* margin: 0 auto; */
   width: 100%;
   max-width: 100%;
   height: 100%;
-  /* width: auto; */
-  /* height: 1000px; */
   min-height: 100vh;
-  /* max-height: 400px; */
-  /* padding: 1rem; */
-  /* background: url(http://www.erikie.nl/wp-content/gallery/high-res-backgrounds/bg3.jpg);
-  background-position: center right;
-  background-attachment: fixed; */
 }
 
 body::before {
@@ -38,18 +29,11 @@ body::before {
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1.1fr 1.1fr 0.1fr 1fr 1fr;
-  /* grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr); */
   align-items: end;
   justify-items: center;
-  /* grid-template-columns: auto auto auto auto auto auto;
-  grid-template-rows: auto auto auto auto; */
-  /* grid-column-gap: 30px;
-  grid-row-gap: 30px; */
 }
 
 input {
-  /* font-family: Georgia, "Times New Roman", Times, serif; */
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-top-right-radius: 4px;
@@ -84,7 +68,6 @@ input:focus {
   width: 96%;
   border-radius: 20px;
   overflow: hidden;
-  /* min-width: 1440px; */
   height: 85%;
   grid-column-start: 1;
   grid-column-end: 7;
@@ -96,23 +79,15 @@ input:focus {
   grid-column-gap: 0px;
   background-color: #332815;
   background-image: url("https://www.transparenttextures.com/patterns/binding-light.png");
-  /* background-color: #1b1c10;
-  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png"); */
-  /* background-color: #b57c36; */
-  /* background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png"); */
-  /* background-color: #cc8800;
-  background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png); */
 }
 
 ul.taskList {
-  /* line-height: 1rem; */
   box-sizing: border-box;
   margin: 0px 10px 10px 5px;
   padding: 8px;
   padding-left: 15px;
   width: 95%;
   min-width: 262px;
-  /* max-width: 263px; */
   height: 95%;
   min-height: 280px;
   max-height: 280px;
@@ -123,8 +98,6 @@ ul.taskList {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   position: relative;
-  /* border: 1px solid #e8e8e8; */
-  /* border-top: 60px solid #fdfd86; */
   font-family: "Reenie Beanie";
   font-size: 16x;
   border-bottom-right-radius: 60px 5px;
@@ -184,13 +157,6 @@ ul::after {
   bottom: 20px;
   width: 250px;
   height: 25px;
-  /* background: rgba(0, 0, 0, 0.2); */
-  /* box-shadow: 2px 15px 5px rgba(0, 0, 0, 0.4); */
-  /* -moz-transform: matrix(-1, -0.1, 0, 1, 0, 0); */
-  /* -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0); */
-  /* -o-transform: matrix(-1, -0.1, 0, 1, 0, 0); */
-  /* -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0); */
-  /* transform: matrix(-1, -0.1, 0, 1, 0, 0); */
 }
 
 @import url("https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap");
@@ -378,19 +344,47 @@ span:hover {
 }
 
 .news-container a {
-  font-style: normal;
-  font-size: 12px;
-  background: whitesmoke;
-  opacity: 0.5;
+  text-decoration: none;
+  color: #282625;
+  font-size: 14px;
+  /* background: whitesmoke; */
+  /* background: rgba(255, 255, 255, 0.5); */
   flex: baseline;
   display: block;
   height: 100%;
   width: 100%;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  float: inline-start;
 }
 
-.news-container a:hover {
+#newsBoxA a:hover {
+  background: rgba(255, 255, 255, 0.2);
   opacity: 0.8;
+}
+
+#newsBoxB a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+#newsBoxC a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+#newsBoxD a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+#CT {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background: whitesmoke;
+  opacity: 0.8;
+  height: wrap;
+  width: 100%;
 }
 
 #instructions {
@@ -408,23 +402,26 @@ span:hover {
   width: 100%;
   border-radius: 10px;
   height: 350px;
-  /* margin-left :10px; */
-
   padding: 3px 5px 25px 20px;
   position: relative;
   border: 1px solid #b5b5b5;
   background: white;
   background: -webkit-linear-gradient(to top, #dfe8ec 0%, white 8%) 0 57px;
   background: -moz-linear-gradient(to top, #dfe8ec 0%, white 8%) 0 57px;
-  background: linear-gradient(to top, #dfe8ec 0%, white 8%) 0 57px;
+  background: linear-gradient(to top, #dfe8ec 0%, white 8%) 0 17px;
   -webkit-background-size: 100% 30px;
   -moz-background-size: 100% 30px;
   -ms-background-size: 100% 30px;
-  background-size: 100% 20px;
+  background-size: 100% 18px;
+}
+
+.notes:focus{
+  outline: none !important;
 }
 
 .notes::placeholder {
   text-align: left;
+  color: rgb(175, 175, 175);
 }
 
 .notes::before {

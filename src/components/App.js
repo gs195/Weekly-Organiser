@@ -242,8 +242,10 @@ class ToDoList extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              (Reuters Health) - More than three-quarters of antibiotic
-              prescriptions...
+              <div id="CT">
+                (Reuters Health) - More than three-quarters of antibiotic
+                prescriptions..
+              </div>
             </a>
           </div>
           <div id="newsBoxB">
@@ -252,12 +254,35 @@ class ToDoList extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Sorry, Galaxy Fold fans, but I have to say it: I told you so -
-              BGR...
+              <div id="CT">
+                Sorry, Galaxy Fold fans, but I have to say it: I told you so -
+                BGR...
+              </div>
             </a>
           </div>
-          <div id="newsBoxC" />
-          <div id="newsBoxD" />
+          <div id="newsBoxC">
+            <a
+              href="https://news.google.com/__i/rss/rd/articles/CBMidGh0dHBzOi8vd3d3LnRvZGF5b25saW5lLmNvbS93b3JsZC9ob25nLWtvbmctdHljb29ucy1tb3ZpbmctYXNzZXRzLXNpbmdhcG9yZS1mZWFycy1yaXNlLW92ZXItcHJvcG9zZWQtZXh0cmFkaXRpb24tbGF30gEA?oc=5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div id="CT">
+                Hong Kong tycoons moving assets to Singapore as fears rise
+                over...
+              </div>
+            </a>
+          </div>
+          <div id="newsBoxD">
+            <a
+              href="https://news.google.com/__i/rss/rd/articles/CBMiamh0dHBzOi8vc2cubmV3cy55YWhvby5jb20vc2luZ3RlbC1tLTEtYW5kLXN0YXItaHViLWJyb2FkYmFuZC1uZXR3b3JrLXNlcnZpY2UtZG93bi1pbi15aXNodW4tMTIyNDUwMTYzLmh0bWzSAXJodHRwczovL3NnLm5ld3MueWFob28uY29tL2FtcGh0bWwvc2luZ3RlbC1tLTEtYW5kLXN0YXItaHViLWJyb2FkYmFuZC1uZXR3b3JrLXNlcnZpY2UtZG93bi1pbi15aXNodW4tMTIyNDUwMTYzLmh0bWw?oc=5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div id="CT">
+                Singtel, M1 and StarHub broadband network service down...
+              </div>
+            </a>
+          </div>
         </div>
         <textarea
           id="instructions"

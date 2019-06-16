@@ -1,7 +1,11 @@
 // import generateID from "./id-generator";
 import React from "react";
-import { Input, Item, getTodaysDay } from "./functions-group-a";
+// import { Input, Item, getTodaysDay } from "./functions-group-a";
 // import App from "./App";
+import { getTodaysDay } from "./Date.js";
+import Input from "./Input.js";
+import Item from "./Item.js";
+
 
 function SingleTaskList({
   tasks,

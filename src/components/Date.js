@@ -2,7 +2,8 @@ function selectDay(day) {
   let todayString;
   switch (day) {
     case 0:
-      return (todayString = "Sunday");
+      todayString = "Sunday";
+      return todayString;
     case 1:
       return (todayString = "Monday");
     case 2:

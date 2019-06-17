@@ -20,8 +20,7 @@ class ToDoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastUpdated: "",
-      value: "",
+      // value: "",
       fieldValue: [
         { value: "", day: days.Monday },
         { value: "", day: days.Tuesday },
@@ -52,7 +51,7 @@ class ToDoList extends React.Component {
         },
         {
           id: 4,
-          text: "Apply for finance class before 5pm dealine on Friday",
+          text: "File tax returns before 5pm on Friday",
           isDone: false,
           day: days.Wednesday
         },
@@ -197,14 +196,17 @@ class ToDoList extends React.Component {
   };
 
   render() {
+
+      //filters state.tasks to return an array of task objects with day = input parameter key-value pair.
     const getTasksOfDay = listDay =>
       this.state.tasks.filter(task => task.day === listDay);
 
+      //obtains an array of weekday keys, and for each key in this array, creates a <SingleTaskList> component.
     const getTasksofEachDay = () => {
-      const filtered = Object.keys(days).filter(
+      const weekdayKeys = Object.keys(days).filter(
         key => days[key] !== "None" && days[key] !== "Weekend"
       );
-      return filtered.map((key, idx) => {
+      return weekdayKeys.map((key, idx) => {
         return (
           <SingleTaskList
             key={idx}
@@ -223,6 +225,8 @@ class ToDoList extends React.Component {
       });
     };
 
+
+
     return (
       <div id="container">
         {/* <div className="form">
@@ -235,6 +239,7 @@ class ToDoList extends React.Component {
           <p className="date">{getDateStamp()}</p>
           <p className="quote">Mongabay Rainforest, Brazil</p>
         </div>
+        {/* the hard-coded section for news below is only for illustration. The data will be stored in state and obtained by a fetch news api. Implementation pending.*/}
         <div className="organiser-container">{getTasksofEachDay()}</div>
         <div className="news-container">
           <div id="newsBoxA">

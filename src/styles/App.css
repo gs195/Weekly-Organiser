@@ -106,13 +106,7 @@ ul.taskList {
   font-size: 16x;
   border-bottom-right-radius: 60px 5px;
   background: #ffff88; /* Old browsers */
-  background: -moz-linear-gradient(
-    -45deg,
-    #ffff88 81%,
-    #ffff88 82%,
-    #ffff88 82%,
-    #ffffc6 100%
-  ); /* FF3.6+ */
+
   background: -webkit-gradient(
     linear,
     left top,

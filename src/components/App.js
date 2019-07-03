@@ -1,9 +1,8 @@
 import React from "react";
 import "../styles/App.css";
 import generateID from "./id-generator";
-// import { Button } from "./functions-group-a";
+import Button from "./Button.js";
 import SingleTaskList from "./singleTaskList";
-// import { getDateStamp } from "./functions-group-a";
 import { getDateStamp } from "./Date.js";
 
 const days = {
@@ -29,40 +28,40 @@ class ToDoList extends React.Component {
         { value: "", day: days.Friday }
       ],
       tasks: [
-        {
-          id: 1,
-          text: "Complete CSS styling for react-app assignment",
-          isDone: false,
-          day: days.Monday
-        },
-        {
-          id: 2,
-          text:
-            "Carry out research on how to make responsive websites for touch screen smartphones",
-          isDone: false,
-          day: days.Monday
-        },
-        {
-          id: 3,
-          text:
-            "Figure out how to do question 59 of Section 3 of the 2017 GMAT prep book (do we use game theory?)",
-          isDone: false,
-          day: days.Tuesday
-        },
-        {
-          id: 4,
-          text: "File tax returns before 5pm on Friday",
-          isDone: false,
-          day: days.Wednesday
-        },
-        { id: 5, text: "find nemo", isDone: false, day: days.Monday },
-        {
-          id: 6,
-          text:
-            "Get a new bed from IKEA or furniture42 (check selection of both)",
-          isDone: false,
-          day: days.Friday
-        }
+        // {
+        //   id: 1,
+        //   text: "Complete CSS styling for react-app assignment",
+        //   isDone: false,
+        //   day: days.Monday
+        // },
+        // {
+        //   id: 2,
+        //   text:
+        //     "Carry out research on how to make responsive websites for touch screen smartphones",
+        //   isDone: false,
+        //   day: days.Monday
+        // },
+        // {
+        //   id: 3,
+        //   text:
+        //     "Figure out how to do question 59 of Section 3 of the 2017 GMAT prep book (do we use game theory?)",
+        //   isDone: false,
+        //   day: days.Tuesday
+        // },
+        // {
+        //   id: 4,
+        //   text: "File tax returns before 5pm on Friday",
+        //   isDone: false,
+        //   day: days.Wednesday
+        // },
+        // { id: 5, text: "find nemo", isDone: false, day: days.Monday },
+        // {
+        //   id: 6,
+        //   text:
+        //     "Get a new bed from IKEA or furniture42 (check selection of both)",
+        //   isDone: false,
+        //   day: days.Friday
+        // }
       ]
     };
     this.handleEnterPress = this.handleEnterPress.bind(this);
@@ -195,6 +194,10 @@ class ToDoList extends React.Component {
     return newFieldValueArray[0].value;
   };
 
+  clearAll = () => {
+    this.setState({tasks:[]});
+  }
+
   render() {
 
       //filters state.tasks to return an array of task objects with day = input parameter key-value pair.
@@ -225,16 +228,15 @@ class ToDoList extends React.Component {
       });
     };
 
-
-
     return (
       <div id="container">
-        {/* <div className="form">
+        <div>
           <Button
+            className="clear-all"
             type="Button"
-            onClick={event => this.handleClick(event, days.Monday)}
+            onClick={this.clearAll}
           />
-        </div> */}
+        </div>
         <div className="info">
           <p className="date">{getDateStamp()}</p>
           <p className="quote">Mongabay Rainforest, Brazil</p>
@@ -305,3 +307,5 @@ function App() {
 }
 
 export default App;
+
+//

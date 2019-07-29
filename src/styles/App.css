@@ -52,7 +52,7 @@ input {
   margin-left: 5px;
 }
 
-input:hover{
+input:hover {
   background: rgb(216, 230, 235);
 }
 
@@ -99,14 +99,21 @@ ul.taskList {
   padding-inline-start: 10px;
 
   align-self: flex-end;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   position: relative;
   font-family: "Reenie Beanie";
   font-size: 16x;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-bottom-right-radius: 60px 5px;
   background: #ffff88; /* Old browsers */
 
+  background: -webkit-linear-gradient(
+    -45deg,
+    #ffff88 81%,
+    #ffff88 82%,
+    #ffff88 82%,
+    #ffffc6 100%
+  ); /* Chrome10+,Safari5.1+ */
   background: -webkit-gradient(
     linear,
     left top,
@@ -116,13 +123,6 @@ ul.taskList {
     color-stop(82%, #ffff88),
     color-stop(100%, #ffffc6)
   ); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(
-    -45deg,
-    #ffff88 81%,
-    #ffff88 82%,
-    #ffff88 82%,
-    #ffffc6 100%
-  ); /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(
     -45deg,
     #ffff88 81%,
@@ -299,11 +299,10 @@ span:hover {
   margin-right: 20px;
 }
 
-.news-container #newsBoxA {
+.news-container #newsBox1 {
   width: auto;
   height: auto;
   margin: 5px 10px;
-  background: url("https://cna-sg-res.cloudinary.com/image/upload/q_auto,f_auto/image/8695344/16x9/991/557/609aa1d555bc236155019d989012c2c5/sP/world.png");
   background-position: center;
   background-size: auto 100%;
   grid-column-start: 1;
@@ -314,7 +313,7 @@ span:hover {
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-.news-container #newsBoxB {
+.news-container #newsBox2 {
   width: auto;
   height: auto;
   margin: 5px 10px;
@@ -323,14 +322,13 @@ span:hover {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  background: url("https://boygeniusreport.files.wordpress.com/2019/06/samsung-galaxy-fold-sign.jpg?quality=98&strip=all");
   background-position: center;
   background-size: auto 100%;
   border-radius: 10px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-.news-container #newsBoxC {
+.news-container #newsBox3 {
   width: auto;
   height: auto;
   margin: 5px 10px;
@@ -339,13 +337,12 @@ span:hover {
   grid-row-start: 2;
   grid-row-end: 3;
   border-radius: 10px;
-  background: url("https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/2019-06-14t113602z_254908955_rc1169fc6620_rtrmadp_3_hongkong-extradition.jpg?itok=s0yCypra");
   background-position: center;
   background-size: auto 100%;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-.news-container #newsBoxD {
+.news-container #newsBox4 {
   width: auto;
   height: auto;
   margin: 5px 10px;
@@ -353,7 +350,6 @@ span:hover {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
-  background: url("https://s.yimg.com/uu/api/res/1.2/6S2ZExW2b04M7Sd4h6Oi7g--~B/aD0zNjA7dz04MDA7c209MTthcHBpZD15dGFjaHlvbg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/d4635190-8e99-11e9-befe-86a145e5203e");
   background-position: center;
   background-size: auto 100%;
   border-radius: 10px;
@@ -375,42 +371,42 @@ span:hover {
   margin-right: 5px;
 }
 
-#newsBoxA a:hover {
+#newsBox1 a:hover {
   background: rgba(255, 255, 255, 0.2);
   opacity: 0.8;
 }
 
-#newsBoxB a:hover {
+#newsBox2 a:hover {
   background: rgba(255, 255, 255, 0.2);
   opacity: 0.8;
 }
 
-#newsBoxC a:hover {
+#newsBox3 a:hover {
   background: rgba(255, 255, 255, 0.2);
   opacity: 0.8;
 }
 
-#newsBoxD a:hover {
+#newsBox4 a:hover {
   background: rgba(255, 255, 255, 0.2);
   opacity: 0.8;
 }
 
-#newsBoxA:hover {
+#newsBox1:hover {
   margin: 1px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-#newsBoxB:hover {
+#newsBox2:hover {
   margin: 1px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-#newsBoxC:hover {
+#newsBox3:hover {
   margin: 1px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
 
-#newsBoxD:hover {
+#newsBox4:hover {
   margin: 1px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
@@ -428,7 +424,7 @@ span:hover {
   font: 16px "AmericanTypewriter", Cambria, Georgia;
   color: #282625;
   margin: 0 auto;
-  width: 600px;
+  width: 100%;
 }
 .notes {
   grid-column-start: 1;
@@ -453,12 +449,6 @@ span:hover {
   background-size: 100% 18px;
   transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
 }
-
-/* .notes:hover {
-  height: 355px;
-  max-width: 410px;
-  transition: all 0.1s cubic-bezier(0.36, 0.36, 0.36, 0.36);
-} */
 
 .notes:focus {
   outline: none !important;
@@ -514,6 +504,7 @@ span:hover {
   background-size: auto 100%;
   background-repeat: no-repeat;
   width: 100%;
+  min-width: 300px;
   height: 94%;
   display: flex;
   align-items: flex-end;
@@ -538,3 +529,13 @@ span:hover {
   font-size: 12px;
   color: white;
 }
+
+.clear-all button {
+  border: none;
+  background: #e0e0e0;
+  padding: 5px;
+  border-radius: 10px;
+  width: 100px;
+  color: rgb(131, 46, 46);
+}
+

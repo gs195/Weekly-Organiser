@@ -530,12 +530,18 @@ span:hover {
   color: white;
 }
 
+.clear-all {
+  grid-area: 4/1/5/2;
+  height: 100%;
+  margin-bottom: 13px;
+}
+
 .clear-all button {
+  margin-right: 70px;
   border: none;
   background: #e0e0e0;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 8px;
   width: 100px;
   color: rgb(131, 46, 46);
 }
-

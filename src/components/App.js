@@ -207,9 +207,6 @@ class ToDoList extends React.Component {
 
     return (
       <div id="container">
-        <div id="clear-button-container" className="clear-all">
-          <Button type="Button" onClick={this.clearAll} />
-        </div>
         <div className="info">
           <p className="date">{getDateStamp()}</p>
           <p className="quote">Mongabay Rainforest, Brazil</p>
@@ -223,9 +220,9 @@ class ToDoList extends React.Component {
                 <NewsReader newsArticle={newsItem} key={index} index={index} />
               );
             })}
-          {/* {!!this.state.news && !!this.state.news.length && (
-            <NewsReader newsArticles={this.state.news} />
-          )} */}
+        </div>
+        <div id="clear-button-container" className="clear-all">
+          <Button type="Button" onClick={this.clearAll} />
         </div>
         <textarea
           id="instructions"

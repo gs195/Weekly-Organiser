@@ -545,3 +545,16 @@ span:hover {
   width: 100px;
   color: rgb(131, 46, 46);
 }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+li {
+  animation: 0.2s ease-in 0s 1 slideInFromTop;
+}
